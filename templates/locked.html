@@ -1,0 +1,32 @@
+<div class="app" id="locked">
+  <header class="top" id="top">
+    <h1>{{H1}}</h1>
+    <p>{{DATES}}.</p>
+  </header>
+{{BANNER}}
+  <div class="saved" id="saved" role="status" hidden>Showing saved copy. Reload when you have a signal to get updates. <span id="saved-date"></span> <a class="saved-login" href="./?login=1">Reload</a></div>
+
+  <section class="unlock" aria-labelledby="unlock-h">
+    <h2 id="unlock-h">Your agenda is locked</h2>
+    <noscript><p class="unlock-msg">This agenda is encrypted. Turn on JavaScript to read it.</p></noscript>
+    <form id="unlock-form" action="#" data-js-only hidden>
+      <label for="passphrase">Passphrase</label>
+      <input id="passphrase" type="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" required>
+      <button class="btn" type="submit" id="unlock-btn">Unlock</button>
+      <p class="unlock-msg" id="unlock-msg" role="status" aria-live="polite"></p>
+    </form>
+    <p class="lede">The schedule is encrypted on this site. It is decrypted on this device only. After you unlock once, this device opens it without the passphrase, also offline, until you tap Lock.</p>
+  </section>
+
+  <section class="sec" id="info" aria-labelledby="info-h">
+    <h2 id="info-h">Info</h2>
+    <h3 style="font-size:17px;margin:16px 0 4px" id="getting-around">Getting around</h3>
+    <p class="lede">{{GETTING_AROUND}}</p>
+    <h3 style="font-size:17px;margin:24px 0 4px" id="basics">Conference basics</h3>
+    <ul class="basics">{{BASICS}}</ul>
+    <footer class="foot">
+      <span>AWS support: {{SUPPORT_EMAIL}} (unconfirmed).</span>
+      <span>Built {{BUILD_STAMP}}.</span>
+    </footer>
+  </section>
+</div>

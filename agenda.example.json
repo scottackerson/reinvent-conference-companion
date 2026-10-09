@@ -1,0 +1,102 @@
+{
+  "$schema": "./agenda.schema.json",
+  "event": "reinvent-2026",
+  "attendee": { "name": "Alex Example" },
+  "hotel": { "id": "bellagio", "checkIn": "2026-11-29", "checkOut": "2026-12-04" },
+  "priorities": ["Serverless", "Data", "Leadership"],
+  "days": [
+    {
+      "date": "2026-11-30",
+      "items": [
+        {
+          "kind": "session", "code": "COP406-R", "title": "Rethink release management for the agentic coding era",
+          "type": "Code talk", "start": "08:30", "end": "09:30", "venueId": "wynn", "room": "Cristal 2 Code Talk",
+          "status": "walkup", "seats": 100, "tier": "Serverless",
+          "arriveNote": "Small room. Arrive 20 minutes early.",
+          "backups": []
+        },
+        {
+          "kind": "event", "title": "Expo opening and Welcome Reception", "type": "Event",
+          "start": "16:30", "end": "18:00", "endApprox": true, "venueId": "ven", "room": "Expo",
+          "status": "event", "estimated": true, "detail": "Start and end times are estimated.",
+          "backups": []
+        }
+      ]
+    },
+    {
+      "date": "2026-12-01",
+      "items": [
+        {
+          "kind": "keynote", "title": "Opening keynote with Matt Garman, CEO of AWS", "type": "Keynote",
+          "start": "08:00", "end": "10:30", "venueId": "ven", "room": "Room not announced",
+          "status": "estimated", "tier": "Leadership", "detail": "Not announced. Placeholder based on past years.",
+          "backups": []
+        },
+        {
+          "kind": "session", "code": "MAM342", "title": "How Bayer modernized R&D analytics into an agentic decision engine",
+          "type": "Lightning talk", "start": "12:30", "end": "12:50", "venueId": "wynn", "room": "Cristal 2 Lightning Theater",
+          "status": "walkup", "seats": 50, "tier": "Data", "backups": []
+        },
+        {
+          "kind": "session", "code": "COP303", "title": "Improving operations with agentic AI",
+          "type": "Chalk talk", "start": "13:30", "end": "14:30", "venueId": "wynn", "room": "Cristal 2 Purple Theater",
+          "status": "walkup", "seats": 60, "tier": "Serverless",
+          "backups": [
+            {
+              "code": "MAM403-R1", "title": "Decompose a monolith database into microservices with agentic AI",
+              "time": "Tue 1:30 PM", "venueId": "wynn", "room": "La Tache 2", "note": "Needs a reservation."
+            }
+          ]
+        },
+        {
+          "kind": "session", "code": "DVT319", "title": "From Vibe Coding to Agentic Engineering At Scale",
+          "type": "Breakout", "start": "16:00", "end": "17:00", "venueId": "forum", "room": "Forum 120 Orange Theater",
+          "status": "walkup", "seats": 300, "tier": "Leadership",
+          "arriveNote": "Arrive 15 minutes early.",
+          "backups": []
+        }
+      ]
+    },
+    {
+      "date": "2026-12-02",
+      "items": [
+        {
+          "kind": "session", "code": "AIM303", "title": "Building enterprise agent platform on AgentCore",
+          "type": "Breakout", "start": "10:00", "end": "11:00", "venueId": "mgm", "room": "Red Theater",
+          "status": "walkup", "seats": 150, "tier": "Data",
+          "backups": [
+            {
+              "code": "IND3312", "title": "Danske Bank's AI City: Scaling AI agents across an enterprise",
+              "time": "Wed 11:30 AM", "venueId": "wynn", "room": "", "note": "Walk-up."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "date": "2026-12-03",
+      "items": [
+        {
+          "kind": "session", "code": "SEC331", "title": "Managing software vulnerabilities in the agentic world",
+          "type": "Chalk talk", "start": "14:30", "end": "15:30", "venueId": "wynn", "room": "White Theater",
+          "status": "walkup", "seats": 80, "tier": "Serverless",
+          "backups": []
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "wed-morning",
+      "when": "Wednesday, 10:00 AM",
+      "current": { "code": "AIM303", "title": "Building enterprise agent platform on AgentCore", "detail": "MGM Grand, Red Theater. Walk-up." },
+      "alternatives": [
+        { "code": "IND3312", "title": "Danske Bank's AI City: Scaling AI agents across an enterprise", "detail": "Wynn/Encore. Walk-up, 11:30 AM." }
+      ]
+    }
+  ],
+  "tradeoffs": ["This is a sample plan with plenty of open time, so there is room to add sessions."],
+  "rules": ["Sample rule: at most one venue change per day.", "Sample rule: walk-up sessions get a 15 to 20 minute arrival buffer."],
+  "privacy": "public",
+  "meta": { "lastUpdated": "2026-10-09", "reservationsAsOf": "2026-10-09" }
+}

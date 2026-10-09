@@ -1,0 +1,18 @@
+{
+  "name": "reinvent-conference-companion",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Offline iPhone agenda for AWS re:Invent, built from your own schedule.",
+  "license": "MIT",
+  "author": "Scott Ackerson",
+  "scripts": {
+    "build": "node build.mjs",
+    "check": "node build.mjs --check",
+    "test": "node --test",
+    "pdf": "bash scripts/make-pdf.sh",
+    "check-private": "node scripts/check-private.mjs",
+    "publish:gh-pages": "bash scripts/publish-gh-pages.sh",
+    "serve": "python3 -m http.server -d public 8000"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Personal re:Invent agenda",
+  "description": "Shape of agenda.json. The required field 'privacy' and the rule that every code has a title are checked by node build.mjs --check with their own messages, so they are not listed under required here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event", "attendee", "hotel", "days"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "event": { "type": "string", "minLength": 1, "description": "Event pack id, for example reinvent-2026." },
+    "attendee": {
+      "type": "object", "additionalProperties": false, "required": ["name"],
+      "properties": { "name": { "type": "string", "minLength": 1 } }
+    },
+    "hotel": {
+      "type": "object", "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "description": "Id from the event pack hotels list. Leave out for a custom hotel." },
+        "name": { "type": "string", "minLength": 1 },
+        "address": { "type": "string" },
+        "appleMapsQuery": { "type": "string" },
+        "minutesTo": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0 } },
+        "map": { "$ref": "#/$defs/mapPos" },
+        "checkIn": { "$ref": "#/$defs/date" },
+        "checkOut": { "$ref": "#/$defs/date" }
+      }
+    },
+    "priorities": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "defaults": {
+      "type": "object", "additionalProperties": false,
+      "description": "Optional overrides of the event pack defaults.",
+      "properties": {
+        "arriveEarlyMinutes": {
+          "type": "object", "additionalProperties": false,
+          "properties": { "reserved": { "type": "number", "minimum": 0 }, "walkup": { "type": "number", "minimum": 0 }, "event": { "type": "number", "minimum": 0 } }
+        },
+        "leaveBufferMinutes": { "type": "number", "minimum": 0 }
+      }
+    },
+    "venueNotes": { "type": "object", "additionalProperties": { "type": "string" }, "description": "Optional personal notes per venue id, replacing the event pack note." },
+    "travelTable": {
+      "type": "object", "additionalProperties": false,
+      "description": "Optional override of the travel table rows and columns (venue ids; 'hotel' is allowed in cols).",
+      "properties": { "rows": { "type": "array", "items": { "type": "string" } }, "cols": { "type": "array", "items": { "type": "string" } } }
+    },
+    "days": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/day" } },
+    "decisions": { "type": "array", "items": { "$ref": "#/$defs/decision" } },
+    "tradeoffs": { "type": "array", "items": { "type": "string" } },
+    "rules": { "type": "array", "items": { "type": "string" } },
+    "privacy": { "type": "string", "enum": ["host-login", "passphrase", "public"] },
+    "meta": {
+      "type": "object", "additionalProperties": false, "required": ["lastUpdated", "reservationsAsOf"],
+      "properties": { "lastUpdated": { "$ref": "#/$defs/date" }, "reservationsAsOf": { "$ref": "#/$defs/date" } }
+    }
+  },
+  "$defs": {
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "time": { "type": "string", "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$" },
+    "mapPos": {
+      "type": "object", "additionalProperties": false, "required": ["side", "y"],
+      "properties": {
+        "side": { "type": "string", "enum": ["east", "west"] },
+        "y": { "type": "number", "minimum": 44, "maximum": 540 },
+        "x": { "type": "number" }, "r": { "type": "number" }
+      }
+    },
+    "day": {
+      "type": "object", "additionalProperties": false, "required": ["date", "items"],
+      "properties": {
+        "date": { "$ref": "#/$defs/date" },
+        "items": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/item" } },
+        "sequenceText": { "type": "string", "description": "Override of the derived venue sequence text." },
+        "leaveHotelBy": {
+          "type": "object", "additionalProperties": false,
+          "description": "Optional override of the derived leave-the-hotel time and note.",
+          "properties": { "time": { "$ref": "#/$defs/time" }, "note": { "type": "string" } }
+        },
+        "openSlots": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false, "required": ["start", "end", "note"],
+            "properties": { "start": { "$ref": "#/$defs/time" }, "end": { "$ref": "#/$defs/time" }, "venueId": { "type": "string" }, "note": { "type": "string" } }
+          }
+        },
+        "footnote": { "type": "string" }
+      }
+    },
+    "item": {
+      "type": "object", "additionalProperties": false, "required": ["start", "end", "venueId"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "type": "string", "enum": ["session", "event", "keynote"] },
+        "code": { "type": "string" },
+        "title": { "type": "string", "minLength": 1 },
+        "type": { "type": "string" },
+        "start": { "$ref": "#/$defs/time" },
+        "end": { "$ref": "#/$defs/time" },
+        "endApprox": { "type": "boolean" },
+        "venueId": { "type": "string", "minLength": 1 },
+        "room": { "type": "string" },
+        "status": { "type": "string", "enum": ["reserved", "walkup", "estimated", "event"] },
+        "estimated": { "type": "boolean" },
+        "seats": { "type": "number", "minimum": 0 },
+        "tier": { "type": "string" },
+        "detail": { "type": "string" },
+        "arriveNote": { "type": "string" },
+        "travelBefore": {
+          "type": "object", "additionalProperties": false,
+          "description": "Optional override of the derived travel row shown before this item.",
+          "properties": { "start": { "$ref": "#/$defs/time" }, "end": { "$ref": "#/$defs/time" }, "mins": { "type": "number", "minimum": 0 }, "note": { "type": "string" } }
+        },
+        "backups": { "type": "array", "items": { "$ref": "#/$defs/backup" } }
+      }
+    },
+    "backup": {
+      "type": "object", "additionalProperties": false, "required": ["code", "time", "venueId"],
+      "properties": {
+        "code": { "type": "string" }, "title": { "type": "string", "minLength": 1 },
+        "time": { "type": "string", "minLength": 1, "description": "Free text, for example 'Tue 3:00 PM'." },
+        "venueId": { "type": "string", "minLength": 1 }, "room": { "type": "string" }, "note": { "type": "string" }
+      }
+    },
+    "option": {
+      "type": "object", "additionalProperties": false, "required": ["title"],
+      "properties": { "code": { "type": "string" }, "title": { "type": "string", "minLength": 1 }, "detail": { "type": "string" } }
+    },
+    "decision": {
+      "type": "object", "additionalProperties": false, "required": ["when", "current"],
+      "properties": {
+        "id": { "type": "string" }, "when": { "type": "string" },
+        "current": { "$ref": "#/$defs/option" },
+        "alternatives": { "type": "array", "items": { "$ref": "#/$defs/option" } },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

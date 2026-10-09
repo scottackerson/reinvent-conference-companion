@@ -1,0 +1,496 @@
+{
+  "id": "reinvent-2026",
+  "name": "re:Invent 2026",
+  "shortName": "re:Invent",
+  "city": "Las Vegas",
+  "dates": {
+    "start": "2026-11-30",
+    "end": "2026-12-04"
+  },
+  "timezone": "America/Los_Angeles",
+  "timezoneLabel": "PT",
+  "venues": [
+    {
+      "id": "wynn",
+      "name": "Wynn/Encore",
+      "shortName": "Wynn",
+      "address": "3131 S Las Vegas Blvd",
+      "appleMapsQuery": "Wynn Las Vegas",
+      "map": {
+        "side": "east",
+        "y": 80,
+        "r": 9
+      },
+      "notes": "North Strip. Next door to the Venetian.",
+      "indoorConnections": [
+        "ven"
+      ]
+    },
+    {
+      "id": "ven",
+      "name": "Venetian",
+      "shortName": "Venetian",
+      "address": "3355 S Las Vegas Blvd",
+      "appleMapsQuery": "The Venetian Las Vegas",
+      "map": {
+        "side": "east",
+        "y": 170,
+        "r": 9
+      },
+      "notes": "Next door to Wynn/Encore.",
+      "indoorConnections": [
+        "wynn"
+      ]
+    },
+    {
+      "id": "sphere",
+      "name": "Sphere",
+      "shortName": "Sphere",
+      "address": "255 Sands Ave",
+      "appleMapsQuery": "Sphere Las Vegas",
+      "map": {
+        "side": "east",
+        "x": 316,
+        "y": 216,
+        "r": 7,
+        "label": {
+          "x": 344,
+          "y": 240,
+          "subY": 256,
+          "anchor": "end"
+        }
+      },
+      "notes": "Behind the Venetian.",
+      "indoorConnections": []
+    },
+    {
+      "id": "cp",
+      "name": "Caesars Palace",
+      "shortName": "Caesars Palace",
+      "address": "3570 S Las Vegas Blvd",
+      "appleMapsQuery": "Caesars Palace Las Vegas",
+      "map": {
+        "side": "west",
+        "y": 270,
+        "r": 9
+      },
+      "notes": "Center Strip.",
+      "indoorConnections": []
+    },
+    {
+      "id": "mgm",
+      "name": "MGM Grand",
+      "shortName": "MGM Grand",
+      "address": "3799 S Las Vegas Blvd",
+      "appleMapsQuery": "MGM Grand Las Vegas",
+      "map": {
+        "side": "east",
+        "y": 470,
+        "r": 9
+      },
+      "notes": "South end of the conference footprint.",
+      "indoorConnections": []
+    },
+    {
+      "id": "forum",
+      "name": "Caesars Forum",
+      "shortName": "Caesars Forum",
+      "address": "3911 Koval Ln",
+      "appleMapsQuery": "Caesars Forum Las Vegas",
+      "map": {
+        "side": "east",
+        "x": 300,
+        "y": 300,
+        "r": 7,
+        "label": {
+          "x": 344,
+          "y": 326,
+          "subY": 342,
+          "anchor": "end"
+        }
+      },
+      "notes": "Behind the Linq, connected to Harrah's and the Linq.",
+      "indoorConnections": []
+    }
+  ],
+  "hotels": [
+    {
+      "id": "aria",
+      "name": "Aria",
+      "address": "3730 S Las Vegas Blvd",
+      "appleMapsQuery": "Aria Resort Las Vegas",
+      "map": {
+        "side": "west",
+        "y": 416
+      },
+      "minutesTo": {
+        "wynn": 30,
+        "ven": 30,
+        "sphere": 35,
+        "cp": 20,
+        "mgm": 15,
+        "forum": 25
+      }
+    },
+    {
+      "id": "bellagio",
+      "name": "Bellagio",
+      "address": "3600 S Las Vegas Blvd",
+      "appleMapsQuery": "Bellagio Las Vegas",
+      "map": {
+        "side": "west",
+        "y": 322
+      },
+      "minutesTo": {
+        "wynn": 30,
+        "ven": 25,
+        "sphere": 30,
+        "cp": 10,
+        "mgm": 20,
+        "forum": 20
+      }
+    },
+    {
+      "id": "cosmopolitan",
+      "name": "The Cosmopolitan",
+      "address": "3708 S Las Vegas Blvd",
+      "appleMapsQuery": "The Cosmopolitan of Las Vegas",
+      "map": {
+        "side": "west",
+        "y": 366
+      },
+      "minutesTo": {
+        "wynn": 30,
+        "ven": 25,
+        "sphere": 30,
+        "cp": 15,
+        "mgm": 20,
+        "forum": 20
+      }
+    },
+    {
+      "id": "caesars",
+      "name": "Caesars Palace",
+      "address": "3570 S Las Vegas Blvd",
+      "appleMapsQuery": "Caesars Palace Las Vegas",
+      "venueId": "cp",
+      "map": {
+        "side": "west",
+        "y": 270
+      },
+      "minutesTo": {
+        "wynn": 30,
+        "ven": 25,
+        "sphere": 30,
+        "cp": 0,
+        "mgm": 30,
+        "forum": 15
+      }
+    },
+    {
+      "id": "venetian",
+      "name": "Venetian/Palazzo",
+      "address": "3355 S Las Vegas Blvd",
+      "appleMapsQuery": "The Venetian Las Vegas",
+      "venueId": "ven",
+      "map": {
+        "side": "east",
+        "y": 170
+      },
+      "minutesTo": {
+        "wynn": 10,
+        "ven": 0,
+        "sphere": 10,
+        "cp": 25,
+        "mgm": 45,
+        "forum": 25
+      }
+    },
+    {
+      "id": "wynn",
+      "name": "Wynn/Encore",
+      "address": "3131 S Las Vegas Blvd",
+      "appleMapsQuery": "Wynn Las Vegas",
+      "venueId": "wynn",
+      "map": {
+        "side": "east",
+        "y": 80
+      },
+      "minutesTo": {
+        "wynn": 0,
+        "ven": 10,
+        "sphere": 15,
+        "cp": 30,
+        "mgm": 45,
+        "forum": 30
+      }
+    },
+    {
+      "id": "mgm-grand",
+      "name": "MGM Grand",
+      "address": "3799 S Las Vegas Blvd",
+      "appleMapsQuery": "MGM Grand Las Vegas",
+      "venueId": "mgm",
+      "map": {
+        "side": "east",
+        "y": 470
+      },
+      "minutesTo": {
+        "wynn": 45,
+        "ven": 45,
+        "sphere": 45,
+        "cp": 30,
+        "mgm": 0,
+        "forum": 30
+      }
+    },
+    {
+      "id": "mandalay-bay",
+      "name": "Mandalay Bay",
+      "address": "3950 S Las Vegas Blvd",
+      "appleMapsQuery": "Mandalay Bay Las Vegas",
+      "map": {
+        "side": "west",
+        "y": 526
+      },
+      "minutesTo": {
+        "wynn": 50,
+        "ven": 50,
+        "sphere": 50,
+        "cp": 35,
+        "mgm": 15,
+        "forum": 35
+      }
+    },
+    {
+      "id": "park-mgm",
+      "name": "Park MGM",
+      "address": "3770 S Las Vegas Blvd",
+      "appleMapsQuery": "Park MGM Las Vegas",
+      "map": {
+        "side": "west",
+        "y": 446
+      },
+      "minutesTo": {
+        "wynn": 35,
+        "ven": 35,
+        "sphere": 40,
+        "cp": 25,
+        "mgm": 10,
+        "forum": 30
+      }
+    },
+    {
+      "id": "luxor",
+      "name": "Luxor",
+      "address": "3900 S Las Vegas Blvd",
+      "appleMapsQuery": "Luxor Las Vegas",
+      "map": {
+        "side": "west",
+        "y": 496
+      },
+      "minutesTo": {
+        "wynn": 45,
+        "ven": 45,
+        "sphere": 50,
+        "cp": 30,
+        "mgm": 20,
+        "forum": 30
+      }
+    },
+    {
+      "id": "harrahs",
+      "name": "Harrah's",
+      "address": "3475 S Las Vegas Blvd",
+      "appleMapsQuery": "Harrah's Las Vegas",
+      "map": {
+        "side": "east",
+        "y": 232
+      },
+      "minutesTo": {
+        "wynn": 20,
+        "ven": 15,
+        "sphere": 20,
+        "cp": 10,
+        "mgm": 35,
+        "forum": 10
+      }
+    },
+    {
+      "id": "linq",
+      "name": "The Linq",
+      "address": "3535 S Las Vegas Blvd",
+      "appleMapsQuery": "The LINQ Hotel Las Vegas",
+      "map": {
+        "side": "east",
+        "y": 262
+      },
+      "minutesTo": {
+        "wynn": 20,
+        "ven": 15,
+        "sphere": 20,
+        "cp": 10,
+        "mgm": 30,
+        "forum": 5
+      }
+    }
+  ],
+  "travelTimes": {
+    "_note": "Minutes, estimates, not AWS data. A missing pair falls back to the reverse pair.",
+    "wynn": {
+      "ven": 10,
+      "sphere": 15,
+      "cp": 30,
+      "forum": 30,
+      "mgm": 45
+    },
+    "ven": {
+      "wynn": 10,
+      "sphere": 10,
+      "cp": 25,
+      "forum": 25,
+      "mgm": 45
+    },
+    "sphere": {
+      "wynn": 15,
+      "ven": 10,
+      "cp": 30,
+      "forum": 30,
+      "mgm": 40
+    },
+    "cp": {
+      "wynn": 30,
+      "ven": 25,
+      "sphere": 30,
+      "forum": 15,
+      "mgm": 30
+    },
+    "mgm": {
+      "wynn": 45,
+      "ven": 45,
+      "sphere": 40,
+      "cp": 30,
+      "forum": 30
+    },
+    "forum": {
+      "wynn": 30,
+      "ven": 25,
+      "sphere": 30,
+      "cp": 15,
+      "mgm": 30
+    }
+  },
+  "walk": [
+    "wynn>ven",
+    "ven>wynn",
+    "ven>sphere"
+  ],
+  "travelNotes": {
+    "wynn>ven": "Next door",
+    "ven>wynn": "Next door",
+    "ven>sphere": "Short walk behind the Venetian",
+    "sphere>ven": "Short walk behind the Venetian"
+  },
+  "gettingAround": "Wynn/Encore and the Venetian are next door. The Sphere is behind the Venetian. Caesars Forum connects to Harrah's and the Linq. Conference shuttle routes are not announced yet.",
+  "supportEmail": "awsreinvent-support@amazon.com",
+  "basics": [
+    {
+      "item": "Event dates",
+      "value": "Nov 30 to Dec 4, 2026, Las Vegas",
+      "status": "confirmed",
+      "source": "https://aws.amazon.com/events/reinvent/"
+    },
+    {
+      "item": "Reserved seating opened",
+      "value": "Opened Oct 6, 2026 in two waves, 9:00 AM and 5:00 PM PDT",
+      "status": "confirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    },
+    {
+      "item": "Keynote schedule",
+      "value": "Not announced yet. The AWS keynotes page says 2026 keynote schedule and speaker announcements are coming soon (checked Oct 8, 2026).",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/sessions/keynotes/"
+    },
+    {
+      "item": "Badge pickup locations and hours",
+      "value": "Not announced yet. Prior years used several venues plus airport and satellite sites (Based on 2025).",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    },
+    {
+      "item": "Registration desk hours",
+      "value": "Not announced yet",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    },
+    {
+      "item": "Breakfast, lunch, and coffee",
+      "value": "Breakfast, lunch, and snacks are served on full conference days. Locations and times by venue are not announced yet.",
+      "status": "confirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    },
+    {
+      "item": "Conference shuttles",
+      "value": "Shuttles run between properties continuously during conference hours. Routes, stops, and indoor connections are not announced yet; the FAQ says transportation details come in the fall.",
+      "status": "confirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    },
+    {
+      "item": "Expo hours",
+      "value": "The Expo opens Monday evening with the Welcome Reception. Full daily hours are not announced yet. A third-party listing says Tue and Wed 10am to 6pm and Thu 10am to 4pm at the Venetian, unverified.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "item": "Welcome Reception",
+      "value": "Held Monday evening at the Expo. Exact start and end times are not announced yet.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "item": "re:Play party",
+      "value": "Held Thursday night, Dec 3, with live performances, food, games, and themed lounges. Time and location are not announced yet.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "item": "AWS Events mobile app",
+      "value": "The app is called AWS Events, on the Apple App Store and Google Play. Use it for session reservations and event info.",
+      "status": "confirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    },
+    {
+      "item": "Reserved seating rules",
+      "value": "Arrive at the room at least 10 minutes before the session starts or your seat is released to walk-up attendees.",
+      "status": "confirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    },
+    {
+      "item": "Wi-Fi network name",
+      "value": "Not announced yet",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    },
+    {
+      "item": "Lost and found, first aid, attendee support desk",
+      "value": "Not announced yet",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    },
+    {
+      "item": "Support email",
+      "value": "awsreinvent-support@amazon.com",
+      "status": "confirmed",
+      "source": "https://aws.amazon.com/events/reinvent/faqs/"
+    }
+  ],
+  "defaults": {
+    "arriveEarlyMinutes": {
+      "reserved": 10,
+      "walkup": 20,
+      "event": 0
+    },
+    "leaveBufferMinutes": 5
+  }
+}

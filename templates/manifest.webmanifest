@@ -1,0 +1,15 @@
+{
+  "name": __NAME__,
+  "short_name": __SHORT__,
+  "description": __DESC__,
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": "./",
+  "scope": "./",
+  "background_color": "#0F0B1E",
+  "theme_color": "#0F0B1E",
+  "icons": [
+    { "src": "icons/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

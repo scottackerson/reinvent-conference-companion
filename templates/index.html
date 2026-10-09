@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{TITLE}}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0F0B1E">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="{{SHORT_NAME}}">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-512.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="top" id="top">
+    <h1>{{H1}}</h1>
+    <p>{{DATES}}. {{ATTENDEE}}.</p>
+    <p>{{HOTEL_LINE}}</p>
+  </header>
+{{BANNER}}
+  <div class="saved" id="saved" role="status" hidden>Showing saved copy. Log in again when you have a signal to get updates. <span id="saved-date"></span> <a class="saved-login" href="./?login=1">Log in</a></div>
+
+  <section class="console" id="console" aria-label="Now and next">
+    <div class="c-status"><span>Before the conference</span><span>{{RANGE_SHORT}}</span></div>
+    <div class="c-idle">
+      <div class="what">Starts {{FIRST_DAY_LONG}}</div>
+      <div class="sub">{{FIRST_UP}}</div>
+      <a class="btn btn-ghost" href="#{{FIRST_DAY_ID}}">Jump to {{FIRST_DAY_NAME}}</a>
+    </div>
+  </section>
+
+  <div class="search" data-js-only hidden>
+    <label for="q">Find a session</label>
+    <input id="q" type="search" placeholder="Code, title, room or venue" autocomplete="off">
+  </div>
+
+  <div class="switcher" id="agenda">
+    <nav class="seg" aria-label="Days">
+      {{DAY_TABS}}
+    </nav>
+  </div>
+  <div class="legend" aria-label="Legend">
+    <span><span class="badge b-res">Reserved</span></span>
+    <span><span class="badge b-walk">Walk-up</span></span>
+    <span><span class="badge b-est">Estimated</span></span>
+    <span><span class="badge b-ev">Event</span></span>
+    <span><span class="node node-move" style="margin:0 4px;width:10px;height:10px" aria-hidden="true"></span>Move</span>
+  </div>
+  <p class="noresults" id="noresults" hidden>No sessions match.</p>
+
+{{DAYS}}
+
+  <section class="sec" id="map" aria-labelledby="map-h">
+    <h2 id="map-h">Map</h2>
+    <p class="lede">The days you are at each venue are listed under its name.</p>
+    <div class="mapbox">{{MAP_SVG}}</div>
+    <p class="caption">Schematic, not to scale. Use Directions links for real routes.</p>
+    <ul class="venues">{{VENUES}}</ul>
+  </section>
+
+  <section class="sec" id="decisions" aria-labelledby="dec-h">
+    <h2 id="dec-h">Decisions</h2>
+    <p class="lede">Choices you can still make on the day. The current plan is first.</p>
+    {{DECISIONS}}
+    <div class="note"><h3>Accepted trade-offs</h3>
+      <ul>{{TRADEOFFS}}</ul></div>
+    <div class="note"><h3>How this schedule was built</h3>
+      <ul>{{RULES}}</ul></div>
+  </section>
+
+  <section class="sec" id="info" aria-labelledby="info-h">
+    <h2 id="info-h">Info</h2>
+    <h3 style="font-size:17px;margin:16px 0 4px" id="getting-around">Getting around</h3>
+    <p class="lede">Travel times in minutes. All are estimates, not AWS data. Red marks 45 min or more.</p>
+    <div class="ttwrap">{{TRAVEL_TABLE}}</div>
+    <p class="lede">{{GETTING_AROUND}}</p>
+    <h3 style="font-size:17px;margin:24px 0 4px" id="basics">Conference basics</h3>
+    <ul class="basics">{{BASICS}}</ul>
+    <footer class="foot">
+      <span class="state" id="state" hidden>Live</span>
+      <span>Last updated {{LAST_UPDATED}}. Reservations as of {{RES_AS_OF}}. Verify in the AWS Events app.</span>
+      <span>AWS support: {{SUPPORT_EMAIL}} (unconfirmed).</span>
+      <span>Built {{BUILD_STAMP}}.</span>
+    </footer>
+  </section>
+</div>
+
+<div class="tabbar">
+  <nav aria-label="Sections">
+    <a href="#agenda" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Agenda</a>
+    <a href="#map"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>Map</a>
+    <a href="#decisions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v6a6 6 0 0 0 6 6h0a6 6 0 0 1 6 6M18 3v6a6 6 0 0 1-3 5.2"/><path d="m3 6 3-3 3 3M15 6l3-3 3 3"/></svg>Decisions</a>
+    <a href="#info"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>Info</a>
+  </nav>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
