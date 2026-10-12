@@ -2,6 +2,8 @@
 
 Created by Scott Ackerson.
 
+**Live demo** (fictional example agenda): https://scottackerson.github.io/reinvent-conference-companion/. Add `?now=2026-12-01T17:40` to the address to see it mid-conference.
+
 An iPhone web app for your AWS re:Invent agenda. You put in your own sessions and it builds a small site you add to your Home Screen. The top of the page is a "Today Console" showing what is happening now and what is next. Below it are tabs for each day, with a timeline of sessions as tappable cards, a "leave the hotel by" time, a route diagram between venues, backups for sessions that fill up, and your free time with ideas for it: shows, games and other things on nearby, and quick food at the venue you are in. An interactive map shows your venues, your hotel, each day's walking route, the monorail and the free trams. An Around Vegas tab lists what is on during your stay, and a travel-time table covers the rest. The site needs a connection; keep the PDF as a backup.
 
 ## Quick start (with Claude Code)
