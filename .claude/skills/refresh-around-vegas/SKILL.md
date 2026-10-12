@@ -58,5 +58,6 @@ These files are shared, public event pack data used by everyone's site. They nev
 
 ## Map data (once a year, or when a venue changes)
 
-- Walking paths: `node scripts/make-routes.mjs events/<event>` after setting `geo` on every venue and hotel in `event.json`. It prints router minutes next to the travel table so you can spot a wrong estimate; it does not change the table.
+- Walking paths: `node scripts/make-routes.mjs events/<event>` after setting `geo` on every venue and hotel in `event.json`. Paths stay on the Strip: each place gets a `stripAccess` point on Las Vegas Boulevard (computed once, `--refresh-access` recomputes), and an off-Strip venue names the neighbor it is reached through with `stripAccessFrom` (Caesars Forum: `linq`, Sphere: `ven`). It prints walking minutes next to the travel table so you can spot a wrong estimate; it does not change the table.
+- Conference shuttles: AWS publishes routes, stops and pickup times in the fall. When they are out, add them to the event pack (stops with coordinates, routes, hours and frequency, with the AWS source) and show them on the map and in leave-by advice. Not built yet.
 - Monorail and trams: `node scripts/make-transit.mjs events/<event>`.
