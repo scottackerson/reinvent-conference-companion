@@ -78,7 +78,7 @@ Ask: "Who should be able to see this? Your hotel and hourly location will be on 
 - `passphrase`: encrypted, works on any static host including GitHub Pages. Needs a long passphrase (at least 20 characters or 5 random words), supplied as the `PASSPHRASE` environment variable, never written to a file.
 - `public`: open to anyone with the link. Ask for explicit confirmation first.
 
-Set `privacy` in `agenda.json`. Then check the repo's visibility with `gh repo view --json visibility` (or ask). If it is public, or has no remote yet and they plan to make it public, uncomment the `agenda.json` line in `.gitignore` before anything is committed, and confirm with `git check-ignore agenda.json`. `host-login` requires a private repo.
+Also tell them the Map section loads map images from OpenFreeMap (only the map area is sent, never the agenda); if they want no outside requests at all, set `"externalMap": false`. Set `privacy` in `agenda.json`. Then check the repo's visibility with `gh repo view --json visibility` (or ask). If it is public, or has no remote yet and they plan to make it public, uncomment the `agenda.json` line in `.gitignore` before anything is committed, and confirm with `git check-ignore agenda.json`. `host-login` requires a private repo.
 
 ## 6. Build and preview
 
@@ -87,7 +87,7 @@ node build.mjs
 npm run serve
 ```
 
-Give them http://localhost:8000. To preview a live clock, add `?now=2026-12-01T13:00` to the address. In passphrase mode, run `PASSPHRASE='...' node build.mjs` instead; it also creates `build-private/` (the print variant) and `.passphrase-salt` in the working folder, both gitignored. `--out DIR` builds into another folder and `--private-out DIR` moves the passphrase-mode print variant (default `build-private/print.html`). The locked page shows no map; tell them that phones stay unlocked after an update because the first passphrase build creates `.passphrase-salt` (gitignored, not secret) and later builds reuse it; that hosts which build from a clean checkout (Cloudflare Pages, Netlify) need `PASSPHRASE_SALT` set to that file's contents; that deleting the file or changing the passphrase makes every phone ask again; and that a saved copy shows a Reload banner.
+Give them http://localhost:8000. To preview a live clock, add `?now=2026-12-01T13:00` to the address. In passphrase mode, run `PASSPHRASE='...' node build.mjs` instead; it also creates `build-private/` (the print variant) and `.passphrase-salt` in the working folder, both gitignored. `--out DIR` builds into another folder and `--private-out DIR` moves the passphrase-mode print variant (default `build-private/print.html`). The locked page shows no map; tell them that phones stay unlocked after an update because the first passphrase build creates `.passphrase-salt` (gitignored, not secret) and later builds reuse it; that hosts which build from a clean checkout (Cloudflare Pages, Netlify) need `PASSPHRASE_SALT` set to that file's contents; and that deleting the file or changing the passphrase makes every phone ask again.
 
 ## 7. Deploy
 
@@ -95,7 +95,7 @@ Follow `docs/hosting.md` for their host. GitHub Pages project subpaths (`https:/
 
 ## 8. PDF
 
-Run `npm run pdf`. It writes `agenda.pdf`, which is gitignored (in passphrase mode it prints `build-private/print.html`, so `PASSPHRASE` must be set). Tell them to save it to their phone or iCloud Drive as an offline backup. Never deploy or commit it.
+Run `npm run pdf`. It writes `agenda.pdf`, which is gitignored (in passphrase mode it prints `build-private/print.html`, so `PASSPHRASE` must be set). Tell them to save it to their phone or iCloud Drive as a backup for when there is no signal. Never deploy or commit it.
 
 ## 9. Later changes
 

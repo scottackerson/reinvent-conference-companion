@@ -4,7 +4,7 @@
   var TZ = 'UTC', TZLABEL = '';
   var DAYIDS = [];
   var data = null, entries = [], dayInfo = {};
-  var savedCopy = false, firstRun = true;
+  var firstRun = true;
 
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
@@ -46,7 +46,6 @@
     var a = now.date.split('-'), dt = new Date(Date.UTC(+a[0], +a[1] - 1, +a[2]));
     return WEEK[dt.getUTCDay()] + ' ' + MONTHS[+a[1] - 1] + ' ' + (+a[2]) + ', ' + t12(now.h * 60 + now.mi) + (TZLABEL ? ' ' + TZLABEL : '');
   }
-  function fmtDate(d) { var a = d.split('-'); return MONTHS[+a[1] - 1] + ' ' + (+a[2]) + ', ' + a[0]; }
 
   /* ---------- data ---------- */
   function venue(id) { return data.venues.filter(function (v) { return v.id === id; })[0]; }
@@ -112,6 +111,12 @@
     if (today) {
       var slot = (today.openSlots || []).filter(function (g) { return absMin(today.date, toMin(g.start)) <= now.abs && now.abs < absMin(today.date, toMin(g.end)); })[0];
       if (slot) return '<div class="what">Open time</div><div class="sub">' + esc(slot.note) + ', ' + range(toMin(slot.start), toMin(slot.end)) + '.</div>';
+      var fb = (today.free || []).filter(function (b) { return absMin(today.date, toMin(b.start)) <= now.abs && now.abs < absMin(today.date, toMin(b.end)); })[0];
+      if (fb) {
+        var at = fb.venueId ? venue(fb.venueId).name : data.hotel.name, n = fb.ideas.length + fb.food.length + (fb.reinvent ? fb.reinvent.length : 0);
+        var first = fb.ideas[0] ? ' ' + esc(fb.ideas[0].title) + (fb.ideas[0].time ? ' at ' + t12(toMin(fb.ideas[0].time)) : '') + '.' : '';
+        return '<div class="what">' + (fb.kind === 'evening' ? 'Evening free' : 'Free until ' + t12(toMin(fb.end))) + '</div><div class="sub">At ' + esc(at) + '.' + first + (n ? ' <a href="#' + fb.id + '">' + n + ' idea' + (n === 1 ? '' : 's') + '</a>' : '') + '</div>';
+      }
       if (now.abs < dayInfo[today.id].first) return '<div class="what">Before the first item</div><div class="sub">Leave the ' + esc(data.hotel.name) + ' by ' + t12(toMin(today.leaveHotelBy.time)) + ' (estimate).</div>';
       if (now.abs >= dayInfo[today.id].last) return '<div class="what">Done for the day</div><div class="sub">Nothing else is scheduled today.</div>';
       return '<div class="what">Free time</div><div class="sub">Nothing scheduled right now.</div>';
@@ -128,7 +133,7 @@
   function renderConsole(now, state) {
     var box = $('#console'); if (!box) return;
     var days = data.days, firstDay = days[0], lastDay = days[days.length - 1];
-    var status = '<div class="c-status"><span class="live' + (savedCopy ? ' saved' : '') + '">' + (savedCopy ? 'Saved copy' : 'Live') + '</span><span>' + esc(stampLabel(now)) + '</span></div>';
+    var status = '<div class="c-status"><span class="live">Live</span><span>' + esc(stampLabel(now)) + '</span></div>';
     if (state === 'after') { box.hidden = true; return; }
     box.hidden = false;
     var ses = sessions();
@@ -289,68 +294,71 @@
     window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
   }
 
-  /* ---------- saved copy ---------- */
-  function setSaved(on) {
-    if (on === savedCopy) return;
-    savedCopy = on;
-    var b = $('#saved'); if (b) {
-      b.hidden = !on;
-      if (on && data) $('#saved-date', b).textContent = 'Last updated ' + fmtDate(data.meta.lastUpdated) + '.';
-    }
-    var st = $('#state'); if (st) { st.hidden = false; st.textContent = on ? 'Saved copy' : 'Live'; st.classList.toggle('saved-state', on); }
-    if (data) tick();
-  }
-  function initSaved() {
-    var meta = document.querySelector('meta[name="saved-copy"]');
-    if (meta) savedCopy = false, setSaved(true);
-    if (navigator.serviceWorker) {
-      navigator.serviceWorker.addEventListener('message', function (e) { if (e.data && e.data.type === 'saved-copy') setSaved(true); });
-    }
-    window.addEventListener('offline', function () { setSaved(true); });
-  }
-
   /* ---------- boot ---------- */
-  function registerSW() {
-    if ('serviceWorker' in navigator && location.protocol.indexOf('http') === 0) {
-      navigator.serviceWorker.register('sw.js').catch(function () {});
-    }
+  // The site is online only. Earlier versions installed a service worker for offline use; remove it (sw.js
+  // is now a retired worker that clears its caches) so the phone always loads the live site.
+  function retireSW() {
+    if (!('serviceWorker' in navigator) || !navigator.serviceWorker.getRegistrations) return;
+    navigator.serviceWorker.getRegistrations().then(function (rs) { rs.forEach(function (r) { r.unregister(); }); }).catch(function () {});
+    if (window.caches && caches.keys) caches.keys().then(function (ks) { ks.forEach(function (k) { if (k.indexOf('reinvent-') === 0) caches.delete(k); }); }).catch(function () {});
   }
 
-  function useData(j, fromCache) {
+  /* ---------- map (loaded when the Map section comes near the screen) ---------- */
+  var mapLoading = false;
+  function loadScript(src) {
+    return new Promise(function (ok, fail) { var s = document.createElement('script'); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
+  }
+  function loadMap() {
+    if (mapLoading || !data || !data.map) return;
+    var box = $('#mapbox'); if (!box) return;
+    mapLoading = true;
+    var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = 'vendor/maplibre/maplibre-gl.css'; document.head.appendChild(css);
+    loadScript('vendor/maplibre/maplibre-gl.js').then(function () { return loadScript('map.js'); }).then(function () {
+      var now = pacificNow(), today = data.days.filter(function (d) { return d.date === now.date; })[0];
+      window.AgendaMap.mount(box, data, { day: today ? today.id : null });
+    }).catch(function () {
+      box.insertAdjacentHTML('afterend', '<p class="caption">The interactive map could not load. Showing the schematic.</p>');
+    });
+  }
+  function initMap() {
+    if (!data || !data.map) return;
+    var box = $('#mapbox'); if (!box) return;
+    $$('a[href="#map"]').forEach(function (a) { a.addEventListener('click', loadMap); });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) { io.disconnect(); loadMap(); } }, { rootMargin: '800px 0px' });
+      io.observe(box);
+    } else loadMap();
+  }
+
+  function useData(j) {
     data = j; TZ = data.event.timezone; TZLABEL = data.event.timezoneLabel || ''; DAYIDS = data.days.map(function (d) { return d.id; }); index();
-    if (fromCache || !navigator.onLine) setSaved(true);
-    var b = $('#saved'); if (b && savedCopy) $('#saved-date', b).textContent = 'Last updated ' + fmtDate(data.meta.lastUpdated) + '.';
-    var s2 = $('#state'); if (s2) { s2.hidden = false; s2.textContent = savedCopy ? 'Saved copy' : 'Live'; s2.classList.toggle('saved-state', savedCopy); }
+    var s2 = $('#state'); if (s2) s2.hidden = false;
+    initMap();
     tick();
     setInterval(tick, 30000);
     document.addEventListener('visibilitychange', function () { if (!document.hidden) tick(); });
   }
 
   function startLive() {
-    initDays(); initSearch(); initTabs(); initSaved();
+    initDays(); initSearch(); initTabs();
     var st = $('#state'); if (st) st.hidden = false;
   }
 
   // Passphrase mode: the page is a locked shell. unlock.js decrypts agenda.enc, renders the agenda with
-  // render.js, then calls AgendaLive.start(model, fromCache). Defined now, before any module script runs.
+  // render.js, then calls AgendaLive.start(model). Defined now, before any module script runs.
   var encrypted = document.documentElement.hasAttribute('data-encrypted');
   if (encrypted) {
     var started = false;
-    window.AgendaLive = { start: function (model, fromCache) { if (started) return; started = true; startLive(); useData(model, fromCache); } };
+    window.AgendaLive = { start: function (model) { if (started) return; started = true; startLive(); useData(model); } };
   }
 
   function boot() {
-    if (encrypted) { registerSW(); return; }
+    retireSW();
+    if (encrypted) return;
     startLive();
-    fetch('agenda.json').then(function (r) {
-      var fromCache = r.headers.get('x-saved-copy') === '1';
-      return r.json().then(function (j) { return { j: j, fromCache: fromCache }; });
-    }).then(function (res) {
-      useData(res.j, res.fromCache);
-    }).catch(function () {
+    fetch('agenda.json', { cache: 'no-cache' }).then(function (r) { return r.json(); }).then(useData).catch(function () {
       // Data failed to load: keep the neutral static console and the full HTML agenda.
     });
-    registerSW();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();

@@ -2,7 +2,7 @@
 
 Created by Scott Ackerson.
 
-An offline-capable iPhone web app for your AWS re:Invent agenda. You put in your own sessions and it builds a small site you add to your Home Screen. The top of the page is a "Today Console" showing what is happening now and what is next. Below it are tabs for each day, with a timeline of sessions as tappable cards, a "leave the hotel by" time, a route diagram between venues, backups for sessions that fill up, a map of the Strip showing only the venues you use, and a travel-time table. After one visit it works with no signal.
+An iPhone web app for your AWS re:Invent agenda. You put in your own sessions and it builds a small site you add to your Home Screen. The top of the page is a "Today Console" showing what is happening now and what is next. Below it are tabs for each day, with a timeline of sessions as tappable cards, a "leave the hotel by" time, a route diagram between venues, backups for sessions that fill up, and your free time with ideas for it: shows, games and other things on nearby, and quick food at the venue you are in. An interactive map shows your venues, your hotel, each day's walking route, the monorail and the free trams. An Around Vegas tab lists what is on during your stay, and a travel-time table covers the rest. The site needs a connection; keep the PDF as a backup.
 
 ## Quick start (with Claude Code)
 
@@ -38,19 +38,25 @@ In passphrase mode the locked page shows only the event facts (no map and no sch
 
 Steps for Vercel, Cloudflare Pages, Netlify, GitHub Pages and other static hosts: [docs/hosting.md](docs/hosting.md). All links are relative, so the site also works from a subpath such as `https://<owner>.github.io/<repo>/` with no build flag.
 
+## Around Vegas and food
+
+The shared list of things happening during the conference (`events/reinvent-2026/happenings.json`) and food near each venue (`food.json`) are part of the template, so everyone gets them. Every item links to a primary source and says whether it is confirmed. To refresh them, run `/refresh-around-vegas` in Claude Code. Pull template updates into your copy to get the latest list.
+
+## The map
+
+The Map section loads map images from [OpenFreeMap](https://openfreemap.org) (OpenStreetMap data, no account or key). Only the map area you look at goes to that server, never your agenda. Your location is used on the phone only, after you tap the location button. Walking paths come from OpenStreetMap and are approximate. To keep the page free of outside requests, set `"externalMap": false` in `agenda.json`; the map then falls back to a schematic. The map library (MapLibre GL JS, BSD-3-Clause) is vendored in `public/vendor/maplibre/`, so no third-party script runs on the page.
+
 ## Updating for a new year
 
-Facts about the event (venues, hotels, travel estimates, dates) live in event packs under `events/`. For a new year, copy `events/reinvent-2026/` to a new folder, update the dates, venues and basics, and set `"event"` in `agenda.json` to the new id. The engine does not change.
+Facts about the event (venues, hotels, travel estimates, dates, map coordinates) live in event packs under `events/`. For a new year, copy `events/reinvent-2026/` to a new folder, update the dates, venues and basics, run `node scripts/make-routes.mjs` and `node scripts/make-transit.mjs` for the map, refresh Around Vegas, and set `"event"` in `agenda.json` to the new id. The engine does not change.
 
 ## Setting up your iPhone
 
 1. Open the site in Safari and log in or enter your passphrase if asked.
 2. Tap Share, then Add to Home Screen. Open it from the icon.
-3. Open it once more in airplane mode to confirm the saved copy works.
-4. Open it the day before you fly and again on arrival so the saved copy is fresh. iOS can clear saved site data that has not been used for a few weeks.
-5. Keep the PDF (`npm run pdf`, written to `agenda.pdf`) on your phone as a backup.
+3. Keep the PDF (`npm run pdf`, written to `agenda.pdf`) on your phone as a backup for when there is no signal.
 
-To update, edit `agenda.json`, rebuild and redeploy. The phone updates on its next online visit. In passphrase mode the phone stays unlocked after an update, because the build keeps the key salt in `.passphrase-salt` (gitignored, not secret). Hosts that build from a clean checkout need `PASSPHRASE_SALT` set to that file's contents. To make every phone ask again, delete `.passphrase-salt` or change the passphrase, then rebuild. When there is no signal, a saved copy shows a banner with a Reload link (host login shows Log in).
+To update, edit `agenda.json`, rebuild and redeploy. The phone shows the update the next time it opens the site. In passphrase mode the phone stays unlocked after an update, because the build keeps the key salt in `.passphrase-salt` (gitignored, not secret). Hosts that build from a clean checkout need `PASSPHRASE_SALT` set to that file's contents. To make every phone ask again, delete `.passphrase-salt` or change the passphrase, then rebuild.
 
 ## Testing the clock
 

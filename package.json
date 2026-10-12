@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Offline iPhone agenda for AWS re:Invent, built from your own schedule.",
+  "description": "iPhone agenda for AWS re:Invent, built from your own schedule, with a map and what is on around Vegas.",
   "license": "MIT",
   "author": "Scott Ackerson",
   "scripts": {

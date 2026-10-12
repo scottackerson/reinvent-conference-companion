@@ -9,6 +9,15 @@
   },
   "timezone": "America/Los_Angeles",
   "timezoneLabel": "PT",
+  "map": {
+    "style": "https://tiles.openfreemap.org/styles/dark",
+    "center": [
+      -115.1705,
+      36.1175
+    ],
+    "zoom": 13.6,
+    "_note": "Map images: OpenFreeMap (no key, no account), OpenStreetMap data. Change style to any MapLibre style URL."
+  },
   "venues": [
     {
       "id": "wynn",
@@ -24,6 +33,10 @@
       "notes": "North Strip. Next door to the Venetian.",
       "indoorConnections": [
         "ven"
+      ],
+      "geo": [
+        -115.16582,
+        36.12638
       ]
     },
     {
@@ -40,6 +53,10 @@
       "notes": "Next door to Wynn/Encore.",
       "indoorConnections": [
         "wynn"
+      ],
+      "geo": [
+        -115.16934,
+        36.12171
       ]
     },
     {
@@ -61,7 +78,11 @@
         }
       },
       "notes": "Behind the Venetian.",
-      "indoorConnections": []
+      "indoorConnections": [],
+      "geo": [
+        -115.16207,
+        36.12121
+      ]
     },
     {
       "id": "cp",
@@ -75,7 +96,11 @@
         "r": 9
       },
       "notes": "Center Strip.",
-      "indoorConnections": []
+      "indoorConnections": [],
+      "geo": [
+        -115.17676,
+        36.11663
+      ]
     },
     {
       "id": "mgm",
@@ -89,7 +114,11 @@
         "r": 9
       },
       "notes": "South end of the conference footprint.",
-      "indoorConnections": []
+      "indoorConnections": [],
+      "geo": [
+        -115.1694,
+        36.10279
+      ]
     },
     {
       "id": "forum",
@@ -110,7 +139,11 @@
         }
       },
       "notes": "Behind the Linq, connected to Harrah's and the Linq.",
-      "indoorConnections": []
+      "indoorConnections": [],
+      "geo": [
+        -115.16619,
+        36.11896
+      ]
     }
   ],
   "hotels": [
@@ -130,7 +163,11 @@
         "cp": 20,
         "mgm": 15,
         "forum": 25
-      }
+      },
+      "geo": [
+        -115.178,
+        36.10703
+      ]
     },
     {
       "id": "bellagio",
@@ -148,7 +185,11 @@
         "cp": 10,
         "mgm": 20,
         "forum": 20
-      }
+      },
+      "geo": [
+        -115.17872,
+        36.11232
+      ]
     },
     {
       "id": "cosmopolitan",
@@ -166,7 +207,11 @@
         "cp": 15,
         "mgm": 20,
         "forum": 20
-      }
+      },
+      "geo": [
+        -115.17409,
+        36.11016
+      ]
     },
     {
       "id": "caesars",
@@ -260,7 +305,11 @@
         "cp": 35,
         "mgm": 15,
         "forum": 35
-      }
+      },
+      "geo": [
+        -115.17582,
+        36.09225
+      ]
     },
     {
       "id": "park-mgm",
@@ -278,7 +327,11 @@
         "cp": 25,
         "mgm": 10,
         "forum": 30
-      }
+      },
+      "geo": [
+        -115.17526,
+        36.10475
+      ]
     },
     {
       "id": "luxor",
@@ -296,7 +349,11 @@
         "cp": 30,
         "mgm": 20,
         "forum": 30
-      }
+      },
+      "geo": [
+        -115.17581,
+        36.09587
+      ]
     },
     {
       "id": "harrahs",
@@ -314,7 +371,11 @@
         "cp": 10,
         "mgm": 35,
         "forum": 10
-      }
+      },
+      "geo": [
+        -115.17116,
+        36.1193
+      ]
     },
     {
       "id": "linq",
@@ -332,7 +393,11 @@
         "cp": 10,
         "mgm": 30,
         "forum": 5
-      }
+      },
+      "geo": [
+        -115.1706,
+        36.11836
+      ]
     }
   ],
   "travelTimes": {
@@ -491,6 +556,8 @@
       "walkup": 20,
       "event": 0
     },
-    "leaveBufferMinutes": 5
+    "leaveBufferMinutes": 5,
+    "eveningEnd": "22:00",
+    "freeMinutes": 30
   }
 }

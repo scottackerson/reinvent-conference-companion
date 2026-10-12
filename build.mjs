@@ -6,7 +6,8 @@
 //   node build.mjs --private-out DIR  passphrase mode only: where print.html goes (default build-private/)
 //   node build.mjs --salt-file FILE   passphrase mode only: where the PBKDF2 salt is kept (default .passphrase-salt)
 //
-// Data: events/<event>/event.json (event pack, shared) plus agenda.json (one person's schedule).
+// Data: events/<event>/event.json (event pack, shared; optional routes.json, transit.json, happenings.json and
+// food.json beside it) plus agenda.json (one person's schedule).
 // With no agenda.json the build uses agenda.example.json and shows an "Example agenda" banner.
 // Rendering lives in render.mjs (pure, also usable in the browser); validation in validate.mjs.
 //
@@ -46,6 +47,14 @@ let agenda;
 try { agenda = JSON.parse(readFileSync(new URL(agendaPath, root), 'utf8')); } catch (e) { fail(`cannot read ${agendaPath}: ${e.message}`); }
 const packPath = `events/${agenda.event}/event.json`;
 const pack = agenda.event && existsSync(new URL(packPath, root)) ? readJson(packPath, 'event pack') : null;
+// Optional files next to event.json, merged into the pack: walking routes, transit lines, things happening
+// around the city, and food near each venue. Each one is shared, public data.
+if (pack) {
+  for (const k of ['routes', 'transit', 'happenings', 'food']) {
+    const p = `events/${agenda.event}/${k}.json`;
+    if (existsSync(new URL(p, root))) pack[k] = readJson(p, `event pack ${k}`);
+  }
+}
 const schema = readJson('agenda.schema.json', 'schema');
 
 const { errors, warnings } = checkAgenda(pack, agenda, schema);
@@ -98,7 +107,7 @@ const remove = p => rmSync(out(p), { force: true });
 mkdirSync(outDir, { recursive: true });
 // Another output directory needs the committed static assets too.
 if (outDir !== defaultOut) {
-  for (const f of ['app.js', 'unlock.js', 'styles.css', 'icons']) cpSync(join(defaultOut, f), out(f), { recursive: true });
+  for (const f of ['app.js', 'map.js', 'unlock.js', 'styles.css', 'icons', 'vendor']) cpSync(join(defaultOut, f), out(f), { recursive: true });
 }
 
 const stamp = new Date().toISOString().replace(/\D/g, '').slice(0, 14);
@@ -110,13 +119,8 @@ const html = fillTemplate(template, placeholders);
 // Print variant: every <details> open, no JavaScript.
 const printHtml = html.replace(/<details class="card/g, '<details open class="card').replace(/<script src="app.js"><\/script>\n?/, '').replace('<html lang="en">', '<html lang="en" class="print">');
 
-const PRECACHE_PLAIN = ['./', 'index.html', 'agenda.json', 'app.js', 'styles.css', 'manifest.webmanifest', 'icons/apple-touch-icon.png', 'icons/icon-512.png'];
-const REQUIRED_PLAIN = ['./', 'agenda.json', 'app.js', 'styles.css'];
-const PRECACHE_ENC = ['./', 'index.html', 'agenda.enc', 'app.js', 'unlock.js', 'render.js', 'styles.css', 'manifest.webmanifest', 'icons/apple-touch-icon.png', 'icons/icon-512.png'];
-const REQUIRED_ENC = ['./', 'agenda.enc', 'app.js', 'unlock.js', 'render.js', 'styles.css'];
-const writeSw = (precache, required) => write('sw.js', read('templates/sw.js')
-  .replace('__PRECACHE__', JSON.stringify(precache).replaceAll(',', ', ')).replace('__REQUIRED__', JSON.stringify(required).replaceAll(',', ', '))
-  .replaceAll('__BUILD__', stamp));
+// Retired service worker: removes the offline cache that earlier versions installed on phones.
+const writeSw = () => write('sw.js', read('templates/sw.js'));
 const writeManifest = desc => write('manifest.webmanifest', read('templates/manifest.webmanifest')
   .replace('__NAME__', JSON.stringify(model.event.name)).replace('__SHORT__', JSON.stringify(model.event.shortName))
   .replace('__DESC__', JSON.stringify(desc)));
@@ -127,7 +131,7 @@ if (!encrypted) {
   // The browser (app.js) reads the resolved model, not the raw agenda.
   write('agenda.json', JSON.stringify(model));
   for (const f of ['agenda.enc', 'render.js']) remove(f);
-  writeSw(PRECACHE_PLAIN, REQUIRED_PLAIN);
+  writeSw();
   const who = model.attendee.name ? `${model.attendee.name}'s ` : '';
   writeManifest(`${who}${model.event.name} agenda`);
 } else {
@@ -157,9 +161,7 @@ if (!encrypted) {
   const bodyStart = template.indexOf('<body>\n') + '<body>\n'.length;
   const bodyEnd = template.indexOf('<script src="app.js"></script>');
   if (bodyStart < 7 || bodyEnd < bodyStart) fail('templates/index.html: cannot find <body> and the app.js script tag');
-  let agendaTpl = template.slice(bodyStart, bodyEnd)
-    .replace('Showing saved copy. Log in again when you have a signal to get updates.', 'Showing saved copy. Reload when you have a signal to get updates.')
-    .replace('href="./?login=1">Log in</a>', 'href="./?login=1">Reload</a>');
+  const agendaTpl = template.slice(bodyStart, bodyEnd);
   if (/<\/script/i.test(agendaTpl)) fail('templates/index.html: the agenda body must not contain a script tag');
   // Whitelist: only event pack values (plus the example banner and build stamp) reach the shell.
   const shellPlaceholders = {};
@@ -174,7 +176,7 @@ if (!encrypted) {
 
   // 3. The renderer for the browser. .js so every static host serves it as JavaScript.
   writeFileSync(out('render.js'), readFileSync(new URL('render.mjs', root)));
-  writeSw(PRECACHE_ENC, REQUIRED_ENC);
+  writeSw();
   writeManifest(`${model.event.name} agenda`);
 
   // 4. Print variant for the local PDF only, outside the deployed folder.

@@ -1,0 +1,227 @@
+{
+  "checked": "2026-10-12",
+  "items": [
+    {
+      "venueId": "wynn",
+      "name": "Espresso",
+      "kind": "coffee",
+      "where": "Next to the Encore front desk, steps from the casino",
+      "note": "Coffee, pastries, sandwiches and salads, most items to go.",
+      "source": "https://www.wynnlasvegas.com/dining/casual-dining/espresso"
+    },
+    {
+      "venueId": "wynn",
+      "name": "Urth Caffe",
+      "kind": "coffee",
+      "where": "Wynn Esplanade, in Wynn Plaza Shops",
+      "note": "Organic coffee, pastries, sandwiches and salads.",
+      "source": "https://www.wynnlasvegas.com/dining/casual-dining/urth-caffe"
+    },
+    {
+      "venueId": "wynn",
+      "name": "Caffe al Teatro",
+      "kind": "quick",
+      "where": "Steps from the Encore Theater",
+      "note": "Cafe fare, pastries, sandwiches and pizzas, eat in or take away.",
+      "source": "https://www.wynnlasvegas.com/dining/casual-dining/caffe-al-teatro"
+    },
+    {
+      "venueId": "wynn",
+      "name": "Red 8",
+      "kind": "sit-down",
+      "where": "Wynn casino floor",
+      "note": "Dim sum, noodles and rice dishes. Online ordering is offered.",
+      "source": "https://www.wynnlasvegas.com/dining/casual-dining/red-8"
+    },
+    {
+      "venueId": "wynn",
+      "name": "Allegro",
+      "kind": "sit-down",
+      "where": "Near the Encore Theater and Wynn Plaza Shops",
+      "note": "Italian pastas and pizza.",
+      "source": "https://www.wynnlasvegas.com/dining/casual-dining/allegro"
+    },
+    {
+      "venueId": "wynn",
+      "name": "Wazuzu",
+      "kind": "sit-down",
+      "where": "Encore casino, near Eastside Lounge and Casa Playa",
+      "note": "Sushi, noodles and Asian dishes.",
+      "source": "https://www.wynnlasvegas.com/dining/casual-dining/wazuzu"
+    },
+    {
+      "venueId": "ven",
+      "name": "Via Via Food Hall",
+      "kind": "food hall",
+      "where": "On the Venetian casino floor, right off the Grand Colonnade",
+      "note": "Counters include All'Antico Vinaio, Howlin' Ray's, Scarr's Pizza, B.S. Taqueria, Ivan Ramen and Anita Gelato.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/via-via.html"
+    },
+    {
+      "venueId": "ven",
+      "name": "Starbucks",
+      "kind": "coffee",
+      "note": "Four locations around The Venetian Resort, with mobile ordering.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/starbucks.html"
+    },
+    {
+      "venueId": "sphere",
+      "name": "Via Via Food Hall",
+      "kind": "food hall",
+      "where": "On the Venetian casino floor, right off the Grand Colonnade",
+      "note": "Counters include All'Antico Vinaio, Howlin' Ray's, Scarr's Pizza, B.S. Taqueria, Ivan Ramen and Anita Gelato.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/via-via.html"
+    },
+    {
+      "venueId": "sphere",
+      "name": "Starbucks",
+      "kind": "coffee",
+      "note": "Four locations around The Venetian Resort, with mobile ordering.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/starbucks.html"
+    },
+    {
+      "venueId": "ven",
+      "name": "Bouchon Bakery",
+      "kind": "coffee",
+      "where": "Behind the escalators near The Venetian North Tower guest elevators",
+      "note": "Bakery and cafe.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/bouchon-bakery.html"
+    },
+    {
+      "venueId": "ven",
+      "name": "Carlo's Bakery",
+      "kind": "quick",
+      "note": "Pastries, cakes and sandwiches. The page notes there may be a line.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/carlos-bakery.html"
+    },
+    {
+      "venueId": "ven",
+      "name": "Grand Lux Cafe at The Venetian",
+      "kind": "sit-down",
+      "note": "Large menu, table service.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/grand-lux-cafe-venetian.html"
+    },
+    {
+      "venueId": "ven",
+      "name": "Noodle Asia",
+      "kind": "sit-down",
+      "note": "Casual Asian noodle and dumpling dishes.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/noodle-asia.html"
+    },
+    {
+      "venueId": "sphere",
+      "name": "Donutique",
+      "kind": "quick",
+      "note": "Donuts at The Venetian Resort.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/donutique.html"
+    },
+    {
+      "venueId": "sphere",
+      "name": "Grand Lux Cafe at The Palazzo",
+      "kind": "sit-down",
+      "note": "Large menu, table service on the Palazzo side.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/grand-lux-cafe-palazzo.html"
+    },
+    {
+      "venueId": "sphere",
+      "name": "Canyon Ranch Cafe",
+      "kind": "sit-down",
+      "note": "Balanced meals with gluten-free and plant-based options.",
+      "source": "https://www.venetianlasvegas.com/dining/restaurants/canyon-ranch-cafe.html"
+    },
+    {
+      "venueId": "cp",
+      "name": "Starbucks at the Celebrity Food Hall",
+      "kind": "coffee",
+      "where": "Celebrity Food Hall",
+      "note": "Coffee, tea and quick bites, with to-go pickup.",
+      "source": "https://www.caesars.com/caesars-palace/restaurants/starbucks-at-the-celebrity-food-hall"
+    },
+    {
+      "venueId": "cp",
+      "name": "Brioche by Guy Savoy",
+      "kind": "coffee",
+      "note": "French bakery with pastries and coffee, grab and go.",
+      "source": "https://www.caesars.com/caesars-palace/restaurants/brioche-by-guy-savoy"
+    },
+    {
+      "venueId": "cp",
+      "name": "Chicken Guy!",
+      "kind": "food hall",
+      "where": "Celebrity Food Hall",
+      "note": "Chicken tenders, sandwiches and sauces.",
+      "source": "https://www.caesars.com/caesars-palace/restaurants/guy-fieri-chicken-guy"
+    },
+    {
+      "venueId": "cp",
+      "name": "Buddy V's Pizzeria",
+      "kind": "food hall",
+      "where": "Celebrity Food Hall",
+      "note": "Pizza by the pie, sandwiches and sweets, fast casual.",
+      "source": "https://www.caesars.com/caesars-palace/restaurants/buddy-vs-pizzeria-by-buddy-valastro"
+    },
+    {
+      "venueId": "cp",
+      "name": "Pronto by Giada",
+      "kind": "quick",
+      "note": "Fast-casual sandwiches.",
+      "source": "https://www.caesars.com/caesars-palace/restaurants/pronto-by-giada"
+    },
+    {
+      "venueId": "cp",
+      "name": "Cafe Americano",
+      "kind": "sit-down",
+      "where": "Heart of Caesars Palace",
+      "note": "Breakfast and American Tex-Mex dishes with patio seating.",
+      "source": "https://www.caesars.com/caesars-palace/restaurants/cafe-americano"
+    },
+    {
+      "venueId": "forum",
+      "name": "Starbucks (LINQ Promenade)",
+      "kind": "coffee",
+      "where": "LINQ Promenade",
+      "note": "Espresso drinks, pastries and breakfast sandwiches.",
+      "source": "https://www.caesars.com/linq/restaurants/starbucks"
+    },
+    {
+      "venueId": "forum",
+      "name": "Fulton Coffee",
+      "kind": "coffee",
+      "where": "Fulton Street Food Hall, Harrah's",
+      "note": "Espresso, pastries and quick bites.",
+      "source": "https://www.caesars.com/harrahs-las-vegas/restaurants/fulton-coffee"
+    },
+    {
+      "venueId": "forum",
+      "name": "Nook Express",
+      "kind": "quick",
+      "where": "Inside The LINQ, by the Promenade and casino",
+      "note": "Coffee, pastries, sandwiches, salads and pizza.",
+      "source": "https://www.caesars.com/linq/restaurants/nook-express"
+    },
+    {
+      "venueId": "forum",
+      "name": "Pin-up Pizza",
+      "kind": "food hall",
+      "where": "Fulton Street Food Hall, Harrah's",
+      "note": "New York style slices, whole pies and pasta.",
+      "source": "https://www.caesars.com/harrahs-las-vegas/restaurants/pin-up-pizza"
+    },
+    {
+      "venueId": "forum",
+      "name": "Gordon Ramsay Fish & Chips",
+      "kind": "quick",
+      "where": "LINQ Promenade",
+      "note": "Fish and chips, fast service.",
+      "source": "https://www.caesars.com/linq/restaurants/gordon-ramsay-fish-and-chips"
+    },
+    {
+      "venueId": "forum",
+      "name": "Guy Fieri's Vegas Kitchen & Bar",
+      "kind": "sit-down",
+      "where": "LINQ Promenade",
+      "note": "Burgers, wings and tacos, with a patio.",
+      "source": "https://www.caesars.com/linq/restaurants/guy-fieris-vegas-kitchen-and-bar"
+    }
+  ]
+}

@@ -1,0 +1,615 @@
+{
+  "checked": "2026-10-12",
+  "window": {
+    "start": "2026-11-29",
+    "end": "2026-12-04"
+  },
+  "items": [
+    {
+      "id": "reinvent-hackathon-road-to-reinvent",
+      "title": "Road to re:Invent 2026 hackathon",
+      "category": "reinvent",
+      "dates": [
+        "2026-11-29"
+      ],
+      "note": "Live coding competition with presentations and judging. Time not published yet. Location not published.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-expo-welcome-reception",
+      "title": "Expo Welcome Reception",
+      "category": "reinvent",
+      "dates": [
+        "2026-11-30"
+      ],
+      "note": "Monday evening reception. Time not published yet. Location not published.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-byte-club-mini-golf",
+      "title": "Byte Club mini golf course",
+      "category": "reinvent",
+      "dates": [
+        "2026-11-30",
+        "2026-12-01",
+        "2026-12-02",
+        "2026-12-03"
+      ],
+      "note": "Mini golf played between sessions, Monday to Thursday. Hours and location not published.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-dnd-miniature-mixer",
+      "title": "Dungeons and Dragons: Miniature Mixer",
+      "category": "reinvent",
+      "dates": [
+        "2026-12-01"
+      ],
+      "note": "Tuesday evening activity. Time not published yet. Location not published.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-game-night",
+      "title": "Game Night",
+      "category": "reinvent",
+      "dates": [
+        "2026-12-01"
+      ],
+      "note": "Tuesday evening activity. Time not published yet. Location not published.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-trivia-night-jeff-barr",
+      "title": "Trivia Night with Jeff Barr",
+      "category": "reinvent",
+      "dates": [
+        "2026-12-01"
+      ],
+      "note": "Tuesday evening trivia. Time not published yet. Location not published.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-networking-cocktail-hours",
+      "title": "Networking cocktail hours at three hotels",
+      "category": "reinvent",
+      "dates": [
+        "2026-12-01",
+        "2026-12-02"
+      ],
+      "note": "Evening cocktail hours at three Las Vegas hotels on Tuesday and Wednesday. Times and hotels not published yet.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-run-allegiant-stadium",
+      "title": "The re:Invent Run",
+      "category": "reinvent",
+      "dates": [
+        "2026-12-02"
+      ],
+      "place": "Allegiant Stadium",
+      "address": "3333 Al Davis Way, Las Vegas, NV 89118",
+      "geo": [
+        -115.18333,
+        36.09074
+      ],
+      "note": "Wednesday run at Allegiant Stadium, which is off the Strip. Start time not published yet.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-magic-the-gathering-night",
+      "title": "Magic: The Gathering Night",
+      "category": "reinvent",
+      "dates": [
+        "2026-12-02"
+      ],
+      "note": "Wednesday evening activity. Time not published yet. Location not published.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-expo-happy-hour",
+      "title": "Expo Happy Hour",
+      "category": "reinvent",
+      "dates": [
+        "2026-12-02"
+      ],
+      "note": "Wednesday afternoon happy hour. Time not published yet. Location not published.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "reinvent-replay-party",
+      "title": "re:Play",
+      "category": "reinvent",
+      "dates": [
+        "2026-12-03"
+      ],
+      "note": "The official re:Invent party on Thursday evening. Time and location not published yet.",
+      "status": "unconfirmed",
+      "source": "https://aws.amazon.com/events/reinvent/experiences/uniquely-reinvent/"
+    },
+    {
+      "id": "vgk-utah-2026-12-03",
+      "title": "Vegas Golden Knights vs. Utah",
+      "category": "sports",
+      "dates": [
+        "2026-12-03"
+      ],
+      "start": "19:00",
+      "place": "T-Mobile Arena",
+      "address": "3780 S Las Vegas Blvd, Las Vegas, NV 89158",
+      "geo": [
+        -115.17822,
+        36.10268
+      ],
+      "note": "NHL regular season home game. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.nhl.com/goldenknights/schedule"
+    },
+    {
+      "id": "nfr-2026",
+      "title": "Wrangler National Finals Rodeo",
+      "category": "sports",
+      "dates": [
+        "2026-12-03",
+        "2026-12-04"
+      ],
+      "place": "Thomas & Mack Center",
+      "address": "4505 S Maryland Pkwy, Las Vegas, NV 89154",
+      "geo": [
+        -115.14427,
+        36.10492
+      ],
+      "note": "Opening two nights of the 10-night NFR (Dec 3 to 12), off the Strip near UNLV. Nightly start time was not confirmed on an official page.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://nfrexperience.com/news/eight-outstanding-performers-to-sing-the-national-anthem-at-the-wrangler-national-finals-rodeo-in-las-vegas"
+    },
+    {
+      "id": "sphere-wizard-of-oz",
+      "title": "The Wizard of Oz at Sphere",
+      "category": "show",
+      "dates": [
+        "2026-11-29",
+        "2026-12-01",
+        "2026-12-02",
+        "2026-12-03",
+        "2026-12-04"
+      ],
+      "times": {
+        "2026-11-29": [
+          "11:00",
+          "14:00",
+          "17:00"
+        ],
+        "2026-12-01": [
+          "17:00",
+          "20:00"
+        ],
+        "2026-12-02": [
+          "17:00",
+          "20:00"
+        ],
+        "2026-12-03": [
+          "17:00",
+          "20:00"
+        ],
+        "2026-12-04": [
+          "11:00",
+          "13:45"
+        ]
+      },
+      "place": "Sphere",
+      "address": "255 Sands Ave, Las Vegas, NV 89169",
+      "geo": [
+        -115.16207,
+        36.12121
+      ],
+      "note": "About 75 minutes. Age 6 and up. Doors open 45 minutes before showtime and late seating is not allowed. No shows listed on Nov 30.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.thesphere.com/shows/wizard-of-oz-experience",
+      "venueId": "sphere"
+    },
+    {
+      "id": "sphere-eagles-2026-12-04",
+      "title": "Eagles Live at Sphere",
+      "category": "show",
+      "dates": [
+        "2026-12-04"
+      ],
+      "start": "20:30",
+      "place": "Sphere",
+      "address": "255 Sands Ave, Las Vegas, NV 89169",
+      "geo": [
+        -115.16207,
+        36.12121
+      ],
+      "note": "Concert at Sphere. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/sphere-tickets-las-vegas/venue/189524",
+      "venueId": "sphere"
+    },
+    {
+      "id": "ka-mgm-grand",
+      "title": "Cirque du Soleil: KA",
+      "category": "show",
+      "dates": [
+        "2026-11-29",
+        "2026-11-30",
+        "2026-12-01",
+        "2026-12-02"
+      ],
+      "times": {
+        "2026-11-29": [
+          "16:30",
+          "19:00"
+        ],
+        "2026-11-30": [
+          "18:00",
+          "20:30"
+        ],
+        "2026-12-01": [
+          "18:00",
+          "20:30"
+        ],
+        "2026-12-02": [
+          "18:00",
+          "20:30"
+        ]
+      },
+      "place": "KA Theatre, MGM Grand",
+      "address": "3799 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.1694,
+        36.10279
+      ],
+      "note": "Cirque du Soleil show inside MGM Grand. Listed dates in the window are Nov 29 to Dec 2.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/ka-theatre-at-mgm-grand-hotel-tickets-las-vegas/venue/376840"
+    },
+    {
+      "id": "jabbawockeez-mgm-grand",
+      "title": "Jabbawockeez",
+      "category": "show",
+      "dates": [
+        "2026-11-29",
+        "2026-11-30",
+        "2026-12-02",
+        "2026-12-03",
+        "2026-12-04"
+      ],
+      "times": {
+        "2026-11-29": [
+          "17:30",
+          "20:00"
+        ],
+        "2026-11-30": [
+          "17:30",
+          "20:00"
+        ],
+        "2026-12-02": [
+          "17:30",
+          "20:00"
+        ],
+        "2026-12-03": [
+          "17:30",
+          "20:00"
+        ],
+        "2026-12-04": [
+          "17:30",
+          "20:00"
+        ]
+      },
+      "place": "Jabbawockeez Theater, MGM Grand",
+      "address": "3799 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.1694,
+        36.10279
+      ],
+      "note": "Dance show inside MGM Grand. No show listed on Dec 1.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/jabbawockeez-las-vegas-nevada-11-29-2026/event/2E0062FE9CFD44FC"
+    },
+    {
+      "id": "dwight-yoakam-resorts-world",
+      "title": "Dwight Yoakam",
+      "category": "show",
+      "dates": [
+        "2026-12-03"
+      ],
+      "start": "20:30",
+      "place": "Resorts World Theatre",
+      "address": "3000 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.16616,
+        36.13369
+      ],
+      "note": "Country concert. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.rwlasvegas.com/entertainment/dwight-yoakam/"
+    },
+    {
+      "id": "gary-allan-resorts-world",
+      "title": "Gary Allan",
+      "category": "show",
+      "dates": [
+        "2026-12-04"
+      ],
+      "start": "20:30",
+      "place": "Resorts World Theatre",
+      "address": "3000 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.16616,
+        36.13369
+      ],
+      "note": "Country concert. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.rwlasvegas.com/entertainment/gary-allan/"
+    },
+    {
+      "id": "matt-rife-dolby-live",
+      "title": "Matt Rife: Stay Golden World Tour",
+      "category": "show",
+      "dates": [
+        "2026-12-04"
+      ],
+      "start": "20:00",
+      "place": "Dolby Live at Park MGM",
+      "address": "3770 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.17498,
+        36.10413
+      ],
+      "note": "Comedy show. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/dolby-live-tickets-las-vegas/venue/376930"
+    },
+    {
+      "id": "viva-la-lisa-colosseum",
+      "title": "VIVA LA LISA",
+      "category": "show",
+      "dates": [
+        "2026-11-29"
+      ],
+      "start": "20:00",
+      "place": "The Colosseum at Caesars Palace",
+      "address": "3570 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.17676,
+        36.11663
+      ],
+      "note": "Show at The Colosseum. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/the-colosseum-at-caesars-palace-tickets-las-vegas/venue/467930"
+    },
+    {
+      "id": "hieuthuhai-ph-live",
+      "title": "HIEUTHUHAI Live Concert (Mat Nham Mat Mo)",
+      "category": "show",
+      "dates": [
+        "2026-11-29"
+      ],
+      "start": "19:00",
+      "place": "PH Live at Planet Hollywood",
+      "address": "3667 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.17151,
+        36.11006
+      ],
+      "note": "Concert. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/ph-live-at-planet-hollywood-tickets-las-vegas/venue/467893"
+    },
+    {
+      "id": "foxworthy-larry-ph-live",
+      "title": "An Evening With Jeff Foxworthy and Larry the Cable Guy",
+      "category": "show",
+      "dates": [
+        "2026-12-04"
+      ],
+      "start": "21:00",
+      "place": "PH Live at Planet Hollywood",
+      "address": "3667 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.17151,
+        36.11006
+      ],
+      "note": "Comedy show. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/ph-live-at-planet-hollywood-tickets-las-vegas/venue/467893"
+    },
+    {
+      "id": "trans-siberian-orchestra-michelob",
+      "title": "Trans-Siberian Orchestra: The Ghosts of Christmas Eve",
+      "category": "show",
+      "dates": [
+        "2026-12-04"
+      ],
+      "start": "19:00",
+      "place": "Michelob Ultra Arena",
+      "address": "3950 S Las Vegas Blvd, Las Vegas, NV 89119",
+      "geo": [
+        -115.17902,
+        36.09065
+      ],
+      "note": "Holiday rock concert at Mandalay Bay. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/michelob-ultra-arena-tickets-las-vegas/venue/376837"
+    },
+    {
+      "id": "dierks-bentley-fontainebleau",
+      "title": "Dierks Bentley",
+      "category": "show",
+      "dates": [
+        "2026-12-04"
+      ],
+      "start": "20:00",
+      "place": "Fontainebleau Las Vegas",
+      "address": "2777 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.15923,
+        36.13742
+      ],
+      "note": "Country concert at the north end of the Strip. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/fontainebleau-las-vegas-tickets-las-vegas/venue/189546"
+    },
+    {
+      "id": "shin-lim-palazzo",
+      "title": "Shin Lim",
+      "category": "show",
+      "dates": [
+        "2026-11-29"
+      ],
+      "start": "19:30",
+      "place": "The Palazzo Theatre",
+      "address": "3325 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.16827,
+        36.12418
+      ],
+      "note": "Magic show at The Palazzo. Other dates in the window were not listed.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/the-palazzo-theatre-at-the-venetian-tickets-las-vegas/venue/189346"
+    },
+    {
+      "id": "mark-normand-palazzo",
+      "title": "Mark Normand",
+      "category": "show",
+      "dates": [
+        "2026-12-04"
+      ],
+      "start": "19:30",
+      "place": "The Palazzo Theatre",
+      "address": "3325 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.16827,
+        36.12418
+      ],
+      "note": "Comedy show at The Palazzo. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/the-palazzo-theatre-at-the-venetian-tickets-las-vegas/venue/189346"
+    },
+    {
+      "id": "marcus-king-virgin-theater",
+      "title": "Marcus King",
+      "category": "show",
+      "dates": [
+        "2026-12-03"
+      ],
+      "start": "20:30",
+      "place": "The Theater at Virgin Hotels",
+      "address": "4455 Paradise Rd, Las Vegas, NV 89169",
+      "geo": [
+        -115.15356,
+        36.10956
+      ],
+      "note": "Concert, all ages (4 and over). Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/the-theater-at-virgin-hotels-las-tickets-las-vegas/venue/189506"
+    },
+    {
+      "id": "cross-canadian-ragweed-brooklyn-bowl",
+      "title": "Hooey Presents: Cross Canadian Ragweed",
+      "category": "show",
+      "dates": [
+        "2026-12-04"
+      ],
+      "start": "21:00",
+      "place": "Brooklyn Bowl Las Vegas",
+      "address": "3545 S Las Vegas Blvd, Las Vegas, NV 89109",
+      "geo": [
+        -115.16951,
+        36.11754
+      ],
+      "note": "Concert on the LINQ Promenade. Tickets required.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.ticketmaster.com/brooklyn-bowl-las-vegas-tickets-las-vegas/venue/189420"
+    },
+    {
+      "id": "ethel-m-holiday-cactus-garden",
+      "title": "Ethel M Holiday Cactus Garden Lights",
+      "category": "seasonal",
+      "dates": [
+        "2026-11-29",
+        "2026-11-30",
+        "2026-12-01",
+        "2026-12-02",
+        "2026-12-03",
+        "2026-12-04"
+      ],
+      "start": "17:00",
+      "end": "22:00",
+      "place": "Ethel M Chocolate Factory, Henderson",
+      "address": "2 Cactus Garden Dr, Henderson, NV 89014",
+      "geo": [
+        -115.07215,
+        36.07394
+      ],
+      "note": "Holiday light display in a cactus garden in Henderson, about 20 minutes off the Strip by car. The page lists Nov 5 to Jan 3 but not the year.",
+      "price": "$3 per person, free under 2 and 65+",
+      "status": "unconfirmed",
+      "source": "https://www.ethelm.com/cactusgardenholidaylights.html"
+    },
+    {
+      "id": "glittering-lights-lvms",
+      "title": "Glittering Lights",
+      "category": "seasonal",
+      "dates": [
+        "2026-11-29",
+        "2026-11-30",
+        "2026-12-01",
+        "2026-12-02",
+        "2026-12-03",
+        "2026-12-04"
+      ],
+      "place": "Las Vegas Motor Speedway",
+      "address": "7000 N Las Vegas Blvd, Las Vegas, NV 89115",
+      "geo": [
+        -115.00983,
+        36.28598
+      ],
+      "note": "Drive-through holiday light show, far north of the Strip. Runs Nov 6 to Jan 4. Nightly hours and price were not published on the page checked.",
+      "price": "Tickets required",
+      "status": "confirmed",
+      "source": "https://www.lvms.com/events/glittering-lights/"
+    },
+    {
+      "id": "heads-up-nfr-week",
+      "title": "NFR week begins",
+      "category": "heads-up",
+      "dates": [
+        "2026-12-03",
+        "2026-12-04"
+      ],
+      "note": "The Wrangler National Finals Rodeo opens Dec 3 and runs to Dec 12. Expect more visitors, traffic and rideshare demand around the Strip and UNLV area in the evenings.",
+      "status": "confirmed",
+      "source": "https://nfrexperience.com/news/eight-outstanding-performers-to-sing-the-national-anthem-at-the-wrangler-national-finals-rodeo-in-las-vegas"
+    }
+  ]
+}

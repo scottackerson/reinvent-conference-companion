@@ -21,6 +21,7 @@
         "appleMapsQuery": { "type": "string" },
         "minutesTo": { "type": "object", "additionalProperties": { "type": "number", "minimum": 0 } },
         "map": { "$ref": "#/$defs/mapPos" },
+        "geo": { "type": "array", "items": { "type": "number" }, "minItems": 2, "description": "Custom hotel only: [longitude, latitude] for the map." },
         "checkIn": { "$ref": "#/$defs/date" },
         "checkOut": { "$ref": "#/$defs/date" }
       }
@@ -48,6 +49,7 @@
     "tradeoffs": { "type": "array", "items": { "type": "string" } },
     "rules": { "type": "array", "items": { "type": "string" } },
     "privacy": { "type": "string", "enum": ["host-login", "passphrase", "public"] },
+    "externalMap": { "type": "boolean", "description": "Default true: the Map section loads map images from the style in the event pack (OpenFreeMap). Set false to keep the page free of outside requests; the map falls back to the schematic." },
     "meta": {
       "type": "object", "additionalProperties": false, "required": ["lastUpdated", "reservationsAsOf"],
       "properties": { "lastUpdated": { "$ref": "#/$defs/date" }, "reservationsAsOf": { "$ref": "#/$defs/date" } }

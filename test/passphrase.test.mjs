@@ -74,8 +74,8 @@ test('shell page has the form, the noscript message and no schedule', () => {
   assert.match(html, />Unlock<\/button>/);
   assert.ok(!/class="day"/.test(html), 'no rendered day sections');
   const sw = readFileSync(join(outDir, 'sw.js'), 'utf8');
-  assert.match(sw, /"agenda\.enc"/);
-  assert.ok(!/"agenda\.json"/.test(sw));
+  assert.match(sw, /registration\.unregister\(\)/, 'sw.js is the retired worker that removes the offline cache');
+  assert.ok(!/cache\.put|addAll/.test(sw), 'sw.js caches nothing');
 });
 
 async function deriveKey(passphrase, enc) {

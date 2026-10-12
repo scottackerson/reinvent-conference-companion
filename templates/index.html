@@ -5,6 +5,7 @@
 <title>{{TITLE}}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#0F0B1E">
 <meta name="color-scheme" content="dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,7 +25,6 @@
     <p>{{HOTEL_LINE}}</p>
   </header>
 {{BANNER}}
-  <div class="saved" id="saved" role="status" hidden>Showing saved copy. Log in again when you have a signal to get updates. <span id="saved-date"></span> <a class="saved-login" href="./?login=1">Log in</a></div>
 
   <section class="console" id="console" aria-label="Now and next">
     <div class="c-status"><span>Before the conference</span><span>{{RANGE_SHORT}}</span></div>
@@ -59,9 +59,18 @@
   <section class="sec" id="map" aria-labelledby="map-h">
     <h2 id="map-h">Map</h2>
     <p class="lede">The days you are at each venue are listed under its name.</p>
-    <div class="mapbox">{{MAP_SVG}}</div>
-    <p class="caption">Schematic, not to scale. Use Directions links for real routes.</p>
+    <div class="mapbox" id="mapbox"{{MAP_ATTR}}>{{MAP_SVG}}</div>
+    <p class="caption">{{MAP_CAPTION}}</p>
     <ul class="venues">{{VENUES}}</ul>
+  </section>
+
+  <section class="sec" id="vegas" aria-labelledby="vegas-h">
+    <h2 id="vegas-h">Around Vegas</h2>
+    <p class="lede">{{AROUND_LEDE}}</p>
+    {{AROUND}}
+    <h3 style="font-size:17px;margin:24px 0 4px" id="food">Food near your venues</h3>
+    <p class="lede">{{FOOD_LEDE}}</p>
+    {{FOOD}}
   </section>
 
   <section class="sec" id="decisions" aria-labelledby="dec-h">
@@ -95,6 +104,7 @@
   <nav aria-label="Sections">
     <a href="#agenda" class="on"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Agenda</a>
     <a href="#map"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>Map</a>
+    <a href="#vegas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6-4.5-4.2 6.1-.7z"/></svg>Vegas</a>
     <a href="#decisions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v6a6 6 0 0 0 6 6h0a6 6 0 0 1 6 6M18 3v6a6 6 0 0 1-3 5.2"/><path d="m3 6 3-3 3 3M15 6l3-3 3 3"/></svg>Decisions</a>
     <a href="#info"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>Info</a>
   </nav>

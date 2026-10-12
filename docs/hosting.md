@@ -10,7 +10,7 @@ npm run check-private -- https://your-site.example
 
 It requests the site with no login. It fails if your agenda is readable by anyone. Do not share the link until it passes.
 
-Build output is the `public/` folder (or the folder given with `node build.mjs --out DIR`). Everything is linked relative to the page and the service worker scope, so the site works at a domain root and under a subpath, for example `https://<owner>.github.io/<repo>/`, with no build flag. The build command is `node build.mjs` and there is no install step.
+Build output is the `public/` folder (or the folder given with `node build.mjs --out DIR`). Everything is linked relative to the page, so the site works at a domain root and under a subpath, for example `https://<owner>.github.io/<repo>/`, with no build flag. The build command is `node build.mjs` and there is no install step.
 
 ## Vercel (host login)
 

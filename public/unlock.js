@@ -2,7 +2,7 @@
    This module fetches agenda.enc, derives the key from the passphrase (PBKDF2-SHA-256, same parameters as
    build.mjs), decrypts with AES-256-GCM, renders with render.js (a build-time copy of render.mjs), then hands
    the model to app.js for the live features. The derived key is kept in IndexedDB as a non-extractable
-   CryptoKey so this device reopens the agenda without the passphrase, also offline, until Lock is used.
+   CryptoKey so this device reopens the agenda without the passphrase until Lock is used.
    It is stored with the file's kid (a hash of the salt and iteration count, not of the passphrase). The salt
    stays the same across builds, so after an update the kid still matches and the stored key keeps working.
    A different kid (new salt) or a failed decrypt (new passphrase, same salt) asks for the passphrase again.
@@ -38,11 +38,11 @@ async function dropKey() { try { await idb('readwrite', s => s.delete(KEY_ID)); 
 
 /* ---------- crypto ---------- */
 async function fetchEnc() {
-  const r = await fetch('agenda.enc'); // service worker: network first, saved copy when offline
+  const r = await fetch('agenda.enc', { cache: 'no-cache' });
   if (!r.ok) throw new Error('agenda.enc ' + r.status);
   const enc = await r.json();
   if (enc.v !== 1 || enc.kdf !== 'PBKDF2-SHA256' || !(enc.iter >= 100000)) throw new Error('agenda.enc format');
-  return { enc, fromCache: r.headers.get('x-saved-copy') === '1' };
+  return { enc };
 }
 async function deriveKey(passphrase, enc) {
   const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(passphrase.normalize('NFC')), 'PBKDF2', false, ['deriveKey']);
@@ -55,7 +55,7 @@ async function decrypt(key, enc) {
 }
 
 /* ---------- render ---------- */
-function show(payload, fromCache) {
+function show(payload) {
   const { model, placeholders } = render(payload.pack, payload.agenda, payload.options || {});
   const tpl = document.createElement('template'); // inert: nothing runs while parsing
   tpl.innerHTML = fillTemplate($('agenda-template').textContent, placeholders);
@@ -67,7 +67,7 @@ function show(payload, fromCache) {
   }
   $('locked').replaceWith(tpl.content);
   $('lock').addEventListener('click', async () => { await dropKey(); location.reload(); });
-  if (window.AgendaLive) window.AgendaLive.start(model, fromCache);
+  if (window.AgendaLive) window.AgendaLive.start(model);
   // Keep the hash target (for example #wed) in view now that it exists.
   if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
 }
@@ -103,7 +103,7 @@ async function main() {
       catch (err) { say(WRONG); input.select(); return; }
       input.value = '';
       await saveKey({ key, kid: got.enc.kid || null, salt: got.enc.salt });
-      try { show(payload, got.fromCache); } catch (err) { say('The agenda could not be shown.'); }
+      try { show(payload); } catch (err) { say('The agenda could not be shown.'); }
     } finally {
       btn.disabled = false; btn.textContent = 'Unlock';
     }
@@ -119,7 +119,7 @@ async function main() {
       try { payload = await decrypt(stored.key, got.enc); } catch (e) { /* passphrase changed, salt kept */ }
     }
     if (payload) {
-      try { show(payload, got.fromCache); } catch (e) { showForm('The agenda could not be shown.'); }
+      try { show(payload); } catch (e) { showForm('The agenda could not be shown.'); }
       return;
     }
     await dropKey(); // new salt, or same salt with a new passphrase: the stored key no longer fits

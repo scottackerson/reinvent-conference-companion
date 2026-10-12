@@ -1,6 +1,7 @@
 // Validator for agenda.json. Pure ES module (no Node APIs), zero dependencies.
 //   validateSchema(schema, data)            -> [{ path, message }]   (small JSON Schema subset)
 //   checkAgenda(pack, agenda, schema)       -> { errors: string[], warnings: string[] }
+//   checkPack(pack)                         -> string[]   (event pack extras: happenings, food, routes, transit)
 import { mins, findHotel, travelBetween, dayId } from './render.mjs';
 
 // ---------- JSON Schema subset: type, enum, const, pattern, minLength, minimum, maximum, minItems,
@@ -157,5 +158,58 @@ export function checkAgenda(pack, agenda, schema) {
     const check = (o, f) => { if (o && o.code && !o.title) errors.push(`decisions[${i}].${f}: code ${o.code} has no title`); };
     check(dec.current, 'current'); (dec.alternatives || []).forEach((a, j) => check(a, `alternatives[${j}]`));
   });
+  for (const e of checkPack(pack)) errors.push(`event pack: ${e}`);
   return { errors, warnings };
+}
+
+// ---------- event pack extras (shared data, so mistakes are errors) ----------
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/, TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+const isGeo = g => Array.isArray(g) && g.length === 2 && g.every(n => typeof n === 'number' && isFinite(n)) && Math.abs(g[0]) <= 180 && Math.abs(g[1]) <= 90;
+const isHttps = u => typeof u === 'string' && /^https:\/\/[^\s"<>]+$/.test(u);
+export function checkPack(pack) {
+  const out = [];
+  if (!pack) return out;
+  const V = new Set(pack.venues.map(v => v.id));
+  for (const v of pack.venues) if (v.geo != null && !isGeo(v.geo)) out.push(`venues.${v.id}.geo: must be [longitude, latitude]`);
+  for (const h of pack.hotels || []) if (h.geo != null && !isGeo(h.geo)) out.push(`hotels.${h.id}.geo: must be [longitude, latitude]`);
+  if (pack.map && (typeof pack.map.style !== 'string' || !isHttps(pack.map.style) || !isGeo(pack.map.center) || typeof pack.map.zoom !== 'number')) out.push('map: needs an https style URL, center [longitude, latitude] and zoom');
+  const H = pack.happenings;
+  if (H) {
+    if (!Array.isArray(H.items)) out.push('happenings.items: must be a list');
+    const ids = new Set();
+    for (const [i, h] of (H.items || []).entries()) {
+      const at = `happenings.items[${i}]${h && h.id ? ` (${h.id})` : ''}`;
+      if (!h || typeof h !== 'object') { out.push(`${at}: must be an object`); continue; }
+      if (!h.id) out.push(`${at}.id: required`); else if (ids.has(h.id)) out.push(`${at}.id: appears twice`); else ids.add(h.id);
+      if (!h.title) out.push(`${at}.title: required`);
+      if (!['reinvent', 'sports', 'show', 'seasonal', 'heads-up'].includes(h.category)) out.push(`${at}.category: must be reinvent, sports, show, seasonal or heads-up`);
+      if (!Array.isArray(h.dates) || !h.dates.length || !h.dates.every(d => DATE_RE.test(d))) out.push(`${at}.dates: needs one or more YYYY-MM-DD dates`);
+      for (const k of ['start', 'end']) if (h[k] != null && !TIME_RE.test(h[k])) out.push(`${at}.${k}: must be HH:MM`);
+      if (h.times) for (const [d, ts] of Object.entries(h.times)) {
+        if (!DATE_RE.test(d) || !(h.dates || []).includes(d)) out.push(`${at}.times.${d}: must be one of its dates`);
+        if (!Array.isArray(ts) || !ts.every(t => TIME_RE.test(t))) out.push(`${at}.times.${d}: must be a list of HH:MM`);
+      }
+      if (h.geo != null && !isGeo(h.geo)) out.push(`${at}.geo: must be [longitude, latitude]`);
+      if (h.venueId != null && !V.has(h.venueId)) out.push(`${at}.venueId: unknown venue "${h.venueId}"`);
+      if (!isHttps(h.source)) out.push(`${at}.source: needs an https link to where it was confirmed`);
+      if (h.status && !['confirmed', 'unconfirmed'].includes(h.status)) out.push(`${at}.status: must be confirmed or unconfirmed`);
+    }
+  }
+  for (const [i, f] of ((pack.food || {}).items || []).entries()) {
+    const at = `food.items[${i}]${f && f.name ? ` (${f.name})` : ''}`;
+    if (!f || !f.name) out.push(`${at}.name: required`);
+    if (!f || !V.has(f.venueId)) out.push(`${at}.venueId: unknown venue "${f && f.venueId}"`);
+    if (!f || !['coffee', 'quick', 'food hall', 'sit-down'].includes(f.kind)) out.push(`${at}.kind: must be coffee, quick, food hall or sit-down`);
+    if (f && f.source != null && !isHttps(f.source)) out.push(`${at}.source: must be an https link`);
+  }
+  for (const [k, r] of Object.entries((pack.routes || {}).routes || {})) {
+    if (!/^[^|]+\|[^|]+$/.test(k) || k.split('|')[0] > k.split('|')[1]) out.push(`routes.${k}: key must be two place ids in sorted order joined by |`);
+    if (!r || !Array.isArray(r.line) || r.line.length < 2 || !r.line.every(isGeo)) out.push(`routes.${k}.line: needs two or more [longitude, latitude] points`);
+  }
+  for (const [i, l] of ((pack.transit || {}).lines || []).entries()) {
+    if (!['monorail', 'tram'].includes(l.kind)) out.push(`transit.lines[${i}].kind: must be monorail or tram`);
+    if (!Array.isArray(l.lines) || !l.lines.every(seg => Array.isArray(seg) && seg.every(isGeo))) out.push(`transit.lines[${i}].lines: must be a list of [longitude, latitude] lists`);
+  }
+  for (const [i, st] of ((pack.transit || {}).stations || []).entries()) if (!st.name || !isGeo(st.geo)) out.push(`transit.stations[${i}]: needs name and geo`);
+  return out;
 }
